@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+    <title>Data Structures</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+    
+       <header>
+           <h2 class="logo">Data structures</h2>
+               <nav class="navigation"> <a href="login.html">Home</a>
+                     <a href="competency.php">Competency</a>                
+                     <a href="topic.php">Levels<a>
+                     <a href="login.html" class="btnlogout">Log Out</a>  
+    
+                </nav>
+      </header>
+<html>
+<head>
+    <title>C Code Execution</title>
+    <!-- Your existing styles here -->
+ <style>
+        body {
+            padding-top: 100px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #D3D3D3;
+            min-height: 110vh; /* Set a minimum height of the viewport height */
+            margin: 0; /* Remove default margin */
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+
+        }
+
+        #output-container {
+            flex-grow: 1; /* Allow the output-container to grow and fill available space */
+            overflow-y: auto; /* Add vertical scrollbar when content overflows */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            width: 2000px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 50px;
+            border: 2px solid #ccc;
+            background-color: #f7f7f7;
+            margin-top: 150;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #858C94;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #858C94;
+        }
+
+        .output-box, .error-box {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #f7f7f7;
+        }
+
+        .output-title, .error-title {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .output-content {
+            color: green;
+        }
+
+        .error-content {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question-container">
+       
+       
+    </div>
+    <button onclick="nextQuestion()" style="display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-color: #858C94;
+    color: white;
+    border-radius: 5px;
+    text-align: left;
+    line-height: 30px;
+    padding-left: 14px;">Compiler</button>
+
+    <form id="code-form">
+        <!-- Your existing form elements here -->
+  <label for="code"><Cap></Cap> Code:</label><br>
+        <textarea id="code" name="code" rows="10" cols="40" required></textarea><br><br>
+
+        <label for="input_data">Input Data (Optional):</label><br>
+        <textarea id="input_data" name="input_data" rows="5" cols="40"></textarea><br><br>
+
+        <input type="button" value="Run Code" onclick="executeCode()">
+    </form>
+
+    <div id="output-box" class="output-box"></div>
+
+    <script>
+       
+        var currentQuestionIndex = 0;
+
+        function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex >= questions.length) {
+        currentQuestionIndex = 0; // Loop back to the first question
+    }
+    updateQuestion();
+
+    // Clear the input box
+    document.getElementById("code").value = "";
+    document.getElementById("input_data").value = "";
+
+    // Clear the output box
+    document.getElementById("output-box").innerHTML = "";
+}
+
+        function updateQuestion() {
+    var questionElement = document.getElementById("question-container");
+    questionElement.textContent = questions[currentQuestionIndex];
+    questionElement.scrollIntoView();
+}
+
+        // Initialize with the first question
+        updateQuestion();
+ function executeCode() {
+            var code = document.getElementById("code").value;
+            var input_data = document.getElementById("input_data").value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "execute.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    document.getElementById("output-box").innerHTML = response;
+                }
+            };
+
+            xhr.send("code=" + encodeURIComponent(code) + "&input_data=" + encodeURIComponent(input_data));
+        }
+    </script>
+</body>
+</html>

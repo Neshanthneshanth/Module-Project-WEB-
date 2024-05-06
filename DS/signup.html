@@ -1,0 +1,55 @@
+<DOCTYPE html> 
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"name="viewport" content="width=device-width,initial-scale=1.0"> 
+    <title>Data structures</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+    
+       <header>
+           <h2 class="logo">CLEVERO</h2>
+               <nav class="navigation"> 
+                <a href="login.html">LOGIN</a>
+                </nav>
+      </header>
+      <div class="login-sec">
+        <img src="signup.png" alt="quiz image"/><br>
+        <div class="form_box_Login">
+            <h2>SIGNUP</h2>
+            <form action="signup_process.php" method="POST">
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="text" id="username" name="username" required>
+                    <lable for="username">USERNAME</lable>
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="email" id="email" name="email" required>
+                    <lable>EMAIL</lable>
+                </div>
+                <div class="input-box">
+                    <span class="icon"></span>
+                    <input type="password" id="password" name="password" required>
+                    <lable>PASSWORD</lable>
+                </div>
+                <button type="submit" class="btn">SIGNUP</button>
+            </form>
+        </div>  
+     </div>   
+        <style>
+            .form_box_Login{
+                width: 400px;
+                height: 57%;
+                background-color: #fff;
+                border-radius: 25px;
+            }
+            .login-sec{
+        display: flex;
+        flex-direction: row;
+    }
+   
+        </style> 
+    </body>
